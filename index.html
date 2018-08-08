@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title> Breakout </title>
+        <style>
+            *{padding: 0; margin: 0;}
+            canvas{background: #eee; display: block; margin: 0 auto; }
+        </style>
+    </head>
+    <body>
+            <canvas id="canvas" width="680" height="420"></canvas>
+            <script>
+                let canvas = document.getElementById("canvas");
+                let render = canvas.getContext("2d");
+                var x = canvas.width/2;
+                var y = canvas.height-30;
+                var dx = 2;
+                var dy = -2;
+
+                function ball() {
+                    render.beginPath();
+                    render.arc(50, 50, 10, 0, Math.PI*2);
+                    render.fillStyle = "#0095DD";
+                    render.fill();
+                    render.closePath();
+                }
+                
+                function draw() {
+                    render.clearRect(0, 0, canvas.width, canvas.height);
+                    ball();
+                    x += dx;
+                    y += dy;
+                }
+                setInterval(draw, 10);
+            </script>
+    </body>
+</html>
