@@ -17,6 +17,18 @@
                 var y = canvas.height-30;
                 var dx = 2;
                 var dy = -2;
+                var bRad = 10;
+                let padHt = 10;
+                let padWth = 75;
+                let padX = (canvas.width-padWth)/2; //starting point for paddle
+
+                function drawPaddle() {
+                    render.beginPath();
+                    render.rect(padX, canvas.height-padHt, padWth, padHt);
+                    render.fillStyle = "#0095DD";
+                    render.fill();
+                    render.closePath();
+                }
 
                 function ball() {
                     render.beginPath();
@@ -29,6 +41,16 @@
                 function draw() {
                     render.clearRect(0, 0, canvas.width, canvas.height);
                     ball();
+                    render.arc(x, y, bRad, 0, Math.PI*2);
+
+                    if (x + dx > canvas.width - bRad || x + dx < bRad) {
+                        dx = -dx;
+                    }
+
+                    if (y + dy > canvas.height-bRad || y + dy < bRad) {
+                        dy = -dy;
+                    }
+
                     x += dx;
                     y += dy;
                 }
